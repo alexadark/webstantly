@@ -1,52 +1,26 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
+/** @jsx jsx */
+import { jsx } from "theme-ui"
 import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { Global } from "@emotion/core"
+import { GlobalStyles } from "../styles/GlobalStyles"
 
-import Header from "./header"
-import "./layout.css"
+import Header from "./Header.js"
+import Footer from "./Footer.js"
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+import { Layout as StyledLayout, Container } from "theme-ui"
+import { Grommet } from "grommet"
+import theme from "../gatsby-plugin-theme-ui"
 
-  return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0px 1.0875rem 1.45rem`,
-          paddingTop: 0,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
-    </>
-  )
-}
+const Layout = ({ children }) => (
+  <Grommet theme={theme} plain>
+    <Global styles={GlobalStyles} />
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+    <StyledLayout>
+      <Header />
+      <Container>{children}</Container>
+      <Footer />
+    </StyledLayout>
+  </Grommet>
+)
 
 export default Layout

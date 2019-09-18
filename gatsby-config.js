@@ -1,11 +1,24 @@
+const config = require("./config")
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Webstantly`,
+    description: `Web Agency specialized in headless wordPress witrh gatsbyjs sites and js apps`,
+    author: `@alexadark`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-theme-ui`,
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        // This type will contain remote schema Query type
+        typeName: `WPGraphQL`,
+        // This is field under which it's accessible
+        fieldName: `wpgraphql`,
+        // Url to query from
+        url: `${config.wordPressUrl}/graphql`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
