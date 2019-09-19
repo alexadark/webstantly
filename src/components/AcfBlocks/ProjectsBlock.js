@@ -1,9 +1,30 @@
-import React from "react"
+/** @jsx jsx */
+import { jsx, Styled } from "theme-ui"
+import { Box, Flex } from "rebass"
+import { Separator } from "../ui-components"
+import Project from "./ProjectItem"
 
-export const ProjectsBlock = () => {
+export const ProjectsBlock = ({
+  cssclass,
+  anchor,
+  content,
+  title,
+  subtitle,
+  projects,
+}) => {
   return (
-    <div>
-      <h3>Projects block</h3>
-    </div>
+    <Box id={anchor} className={cssclass || ""}>
+      <Box sx={{ textAlign: `center` }}>
+        <Styled.h3 dangerouslySetInnerHTML={{ __html: title }} />
+        <Separator my="40px" />
+        <Styled.h5 dangerouslySetInnerHTML={{ __html: subtitle }} />
+        <Styled.p dangerouslySetInnerHTML={{ __html: content }} />
+      </Box>
+      <Flex>
+        {projects.map(project => (
+          <Project project={project} />
+        ))}
+      </Flex>
+    </Box>
   )
 }

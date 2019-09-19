@@ -10,6 +10,7 @@ import Footer from "./Footer.js"
 import { Layout as StyledLayout, Container } from "theme-ui"
 import { Grommet } from "grommet"
 import theme from "../gatsby-plugin-theme-ui"
+import "../styles/scss/styles.scss"
 
 const Layout = ({ children }) => (
   <Grommet theme={theme} plain>

@@ -33,12 +33,11 @@ const Page = ({ data }) => {
         flexibleLayouts.map(block => {
           switch (block.__typename) {
             case "WPGraphQL_Page_Flexlayouts_FlexibleLayouts_ContentBlock":
-              const { content } = block
               return (
                 <ContentBlock
                   cssclass={block.cssclass}
                   anchor={block.anchor}
-                  content={content}
+                  content={block.content}
                 />
               )
 
@@ -49,19 +48,27 @@ const Page = ({ data }) => {
               break
 
             case "WPGraphQL_Page_Flexlayouts_FlexibleLayouts_HeadingBlock":
-              const { type, heading, anchor, cssclass } = block
               return (
                 <HeadingBlock
-                  cssclass={cssclass}
-                  anchor={anchor}
-                  type={type}
-                  heading={heading}
+                  cssclass={block.cssclass}
+                  anchor={block.anchor}
+                  type={block.type}
+                  heading={block.heading}
+                  centered={block.centered}
                 />
               )
 
               break
             case "WPGraphQL_Page_Flexlayouts_FlexibleLayouts_ButtonBlock":
-              return <ButtonBlock />
+              return (
+                <ButtonBlock
+                  cssclass={block.cssclass}
+                  anchor={block.anchor}
+                  button={block.button}
+                  variant={block.variant}
+                  position={block.position}
+                />
+              )
 
               break
             case "WPGraphQL_Page_Flexlayouts_FlexibleLayouts_FeaturesBlock":
@@ -77,7 +84,16 @@ const Page = ({ data }) => {
 
               break
             case "WPGraphQL_Page_Flexlayouts_FlexibleLayouts_ProjectsBlock":
-              return <ProjectsBlock />
+              return (
+                <ProjectsBlock
+                  cssclass={block.cssclass}
+                  anchor={block.anchor}
+                  content={block.content}
+                  title={block.title}
+                  subtitle={block.subtitle}
+                  projects={block.projects}
+                />
+              )
 
               break
             case "WPGraphQL_Page_Flexlayouts_FlexibleLayouts_TeamBlock":
@@ -107,6 +123,27 @@ export const pageQuery = graphql`
               cssclass
               anchor
             }
+            ... on WPGraphQL_Page_Flexlayouts_FlexibleLayouts_ProjectsBlock {
+              subtitle
+              title
+              content
+              cssclass
+              anchor
+              projects {
+                ... on WPGraphQL_Project {
+                  id
+                  featuredImage {
+                    ...GatsbyImageQuery
+                  }
+                  slug
+                  title
+                  uri
+                  projectFields {
+                    projectUrl
+                  }
+                }
+              }
+            }
             ... on WPGraphQL_Page_Flexlayouts_FlexibleLayouts_ImageBlock {
               cssclass
               anchor
@@ -119,11 +156,13 @@ export const pageQuery = graphql`
               type
               cssclass
               anchor
+              centered
             }
             ... on WPGraphQL_Page_Flexlayouts_FlexibleLayouts_ButtonBlock {
               variant
               cssclass
               anchor
+              position
               button {
                 target
                 title
@@ -143,24 +182,7 @@ export const pageQuery = graphql`
                 }
               }
             }
-            ... on WPGraphQL_Page_Flexlayouts_FlexibleLayouts_ProjectsBlock {
-              subtitle
-              title
-              content
-              cssclass
-              anchor
-              projects {
-                ... on WPGraphQL_Project {
-                  id
-                  featuredImage {
-                    ...GatsbyImageQuery
-                  }
-                  slug
-                  title
-                  uri
-                }
-              }
-            }
+
             ... on WPGraphQL_Page_Flexlayouts_FlexibleLayouts_TeamBlock {
               content
               title

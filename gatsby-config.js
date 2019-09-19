@@ -1,3 +1,4 @@
+const autoprefixer = require("autoprefixer")
 const config = require("./config")
 module.exports = {
   siteMetadata: {
@@ -28,6 +29,17 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-sass`,
+    {
+      resolve: "gatsby-plugin-postcss",
+      options: {
+        postCssPlugins: [
+          autoprefixer({
+            overrideBrowserslist: ["last 2 versions"],
+          }),
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
