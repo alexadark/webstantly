@@ -3,6 +3,7 @@ import { jsx, Styled } from "theme-ui"
 import { Box, Flex } from "rebass"
 import { Separator } from "../ui-components"
 import Project from "./ProjectItem"
+import Carousel from "nuka-carousel"
 
 export const ProjectsBlock = ({
   cssclass,
@@ -20,11 +21,11 @@ export const ProjectsBlock = ({
         <Styled.h5 dangerouslySetInnerHTML={{ __html: subtitle }} />
         <Styled.p dangerouslySetInnerHTML={{ __html: content }} />
       </Box>
-      <Flex>
+      <Carousel slidesToShow={3} cellSpacing={20}>
         {projects.map(project => (
           <Project project={project} />
         ))}
-      </Flex>
+      </Carousel>
     </Box>
   )
 }
