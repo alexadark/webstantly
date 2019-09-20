@@ -3,6 +3,7 @@ import { jsx, Styled } from "theme-ui"
 import { Box, Flex } from "rebass"
 import { Separator } from "../ui-components"
 import Project from "./ProjectItem"
+import Slider from "react-slick"
 
 export const ProjectsBlock = ({
   cssclass,
@@ -12,6 +13,13 @@ export const ProjectsBlock = ({
   subtitle,
   projects,
 }) => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+  }
   return (
     <Box id={anchor} className={cssclass || ""}>
       <Box sx={{ textAlign: `center` }}>
@@ -20,11 +28,11 @@ export const ProjectsBlock = ({
         <Styled.h5 dangerouslySetInnerHTML={{ __html: subtitle }} />
         <Styled.p dangerouslySetInnerHTML={{ __html: content }} />
       </Box>
-      <Flex>
+      <Slider {...settings}>
         {projects.map(project => (
           <Project project={project} />
         ))}
-      </Flex>
+      </Slider>
     </Box>
   )
 }
