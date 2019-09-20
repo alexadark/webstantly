@@ -14,7 +14,7 @@ export const FeaturesBlock = ({ content, title, cards, cssclass, anchor }) => {
         sx={{ textAlign: `center` }}
         dangerouslySetInnerHTML={{ __html: content }}
       />
-      <Flex sx={{ flexWrap: `wrap` }}>
+      <Flex sx={{ flexWrap: `wrap`, mt: 50 }}>
         {cards && cards.map(card => <FeatureCard card={card} />)}
       </Flex>
     </div>

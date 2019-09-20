@@ -97,7 +97,15 @@ const Page = ({ data }) => {
 
               break
             case "WPGraphQL_Page_Flexlayouts_FlexibleLayouts_TeamBlock":
-              return <TeamBlock />
+              return (
+                <TeamBlock
+                  cssclass={block.cssclass}
+                  anchor={block.anchor}
+                  content={block.content}
+                  title={block.title}
+                  teamMember={block.teamMember}
+                />
+              )
 
               break
           }
@@ -190,7 +198,6 @@ export const pageQuery = graphql`
               anchor
               teamMember {
                 bio
-                fieldGroupName
                 intro
                 linkedin
                 twitter
