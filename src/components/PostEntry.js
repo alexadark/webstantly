@@ -8,20 +8,12 @@ import PostEntryMeta from "./PostEntryMeta"
 import PostEntryInfo from "./PostEntryInfo"
 import { Button } from "rebass"
 
-const PostEntry = ({ post, location, postsPrefix }) => {
+const PostEntry = ({ post, location }) => {
   return (
     <article>
-      <PostEntryMedia
-        location={location}
-        post={post}
-        postsPrefix={postsPrefix}
-      />
+      <PostEntryMedia location={location} post={post} />
       <div className="content">
-        <PostEntryTitle
-          location={location}
-          post={post}
-          postsPrefix={postsPrefix}
-        />
+        <PostEntryTitle location={location} post={post} />
         <PostEntryInfo className="entry-info" post={post} />
         <PostEntryContent location={location} post={post} />
         <div className="entry-footer">
@@ -34,7 +26,7 @@ const PostEntry = ({ post, location, postsPrefix }) => {
               sx={{ a: { color: `white` } }}
             >
               <Link
-                to={`${postsPrefix}/${post.uri}`}
+                to={`posts/${post.uri}`}
                 aria-label="Read More from this post"
               >
                 Read More
