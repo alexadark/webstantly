@@ -19,7 +19,9 @@ export const ProjectsBlock = ({
         <Styled.h3 dangerouslySetInnerHTML={{ __html: title }} />
         <Separator my="40px" />
         <Styled.h5 dangerouslySetInnerHTML={{ __html: subtitle }} />
-        <Styled.p dangerouslySetInnerHTML={{ __html: content }} />
+        <Box>
+          <Styled.root dangerouslySetInnerHTML={{ __html: content }} />
+        </Box>
       </Box>
       <Carousel
         slidesToShow={3}

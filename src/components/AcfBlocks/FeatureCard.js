@@ -16,7 +16,7 @@ const FeatureCard = ({ card }) => {
         <Styled.h3 sx={{ textAlign: `center`, fontSize: [1, 2] }}>
           {title}
         </Styled.h3>
-        <Styled.p dangerouslySetInnerHTML={{ __html: content }} />
+        <Styled.root dangerouslySetInnerHTML={{ __html: content }} />
       </Box>
     </Box>
   )
