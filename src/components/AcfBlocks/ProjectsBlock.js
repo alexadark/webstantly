@@ -21,7 +21,13 @@ export const ProjectsBlock = ({
         <Styled.h5 dangerouslySetInnerHTML={{ __html: subtitle }} />
         <Styled.p dangerouslySetInnerHTML={{ __html: content }} />
       </Box>
-      <Carousel slidesToShow={3} cellSpacing={20}>
+      <Carousel
+        slidesToShow={3}
+        cellSpacing={20}
+        autoplay={true}
+        infiniteLoop={true}
+        sx={{ mt: 50 }}
+      >
         {projects.map(project => (
           <Project project={project} />
         ))}
