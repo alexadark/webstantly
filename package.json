@@ -24,7 +24,7 @@
     "gatsby-transformer-sharp": "^2.2.14",
     "grommet": "^2.7.8",
     "grommet-icons": "^4.3.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "node-sass": "^4.12.0",
     "nuka-carousel": "^4.5.12",
     "polished": "^3.4.1",
